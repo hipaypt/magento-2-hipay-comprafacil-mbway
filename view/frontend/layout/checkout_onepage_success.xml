@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<body>
+    <referenceContainer name="order.success.additional.info">
+        <block class="Hipay\HipayMbwayGateway\Block\Reference" name="mbway.order.details.success" template="Hipay_HipayMbwayGateway::order/success.phtml" after="-">        	
+        </block>
+    </referenceContainer>
+</body>
