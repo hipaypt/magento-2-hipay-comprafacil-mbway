@@ -1,0 +1,12 @@
+"Place Order","Place Order",module,Hipay_HipayMbwayGateway
+"MB WAY","MB WAY",module,Hipay_HipayMbwayGateway
+"Please open your MB WAY App and authorize the transaction.","Please open your MB WAY App and accept the transaction.",module,Hipay_HipayMbwayGateway
+"ENTITY","ENTITY",module,Hipay_HipayMbwayGateway
+"REFERENCE","REFERENCE",module,Hipay_HipayMbwayGateway
+"AMOUNT","AMOUNT",module,Hipay_HipayMbwayGateway
+"CATEGORY ID","CATEGORY ID",module,Hipay_HipayMbwayGateway
+"Your order # is: ","Your order # is: ",module,Hipay_HipayMbwayGateway
+"You will receive an email with your order details.","You will receive an email with your order details.",module,Hipay_HipayMbwayGateway
+"This payment is valid for the next 5 minutes. Your order will be canceled if the payment expires.","This payment is valid for the next 5 minutes. Your order will be canceled when if payment expires.",module,Hipay_HipayMbwayGateway
+"Alternative phone number for MB WAY Payment","Alternative phone number for MB WAY Payment",module,Hipay_HipayMbwayGateway
+"PHONE NUMBER","PHONE NUMBER",module,Hipay_HipayMbwayGateway
