@@ -22,5 +22,3 @@ HiPay API production or sandbox account credentials for each currency:
 
 Version 1.0.0
 =======
-# magento-2-hipay-comprafacil-mbway
->>>>>>> Initial commit
