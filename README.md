@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # HiPay MB WAY Gateway extension for Magento 2
 
 ## API credentials
