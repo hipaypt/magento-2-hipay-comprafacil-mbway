@@ -2,7 +2,7 @@
     "name": "hipaypt/magento-2-hipay-comprafacil-mbway",
     "description": "HiPay Professional MB WAY payment gateway for Magento 2",
     "type": "magento2-module",
-    "version": "1.0.2",
+    "version": "1.0.0",
     "license": [
         "Apache-2.0"
     ],
