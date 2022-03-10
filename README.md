@@ -21,3 +21,8 @@ HiPay API production or sandbox account credentials for each currency:
   - SOAP extension
 
 Version 1.0.0
+
+
+
+
+composer require hipaypt/magento-2-hipay-comprafacil-mbway
