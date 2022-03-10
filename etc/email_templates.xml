@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Email:etc/email_templates.xsd">
+    <template id="sales_email_order_comment_template" label="Order Update" file="order_update.html" type="html" module="Hipay_HipayMbwayGateway" area="frontend"/>
+    <template id="sales_email_order_comment_guest_template" label="Order Update for Guest" file="order_update_guest.html" type="html" module="Hipay_HipayMbwayGateway" area="frontend"/>
+</config>
