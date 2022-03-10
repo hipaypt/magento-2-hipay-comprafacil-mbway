@@ -1,0 +1,23 @@
+<?php
+$paymentData = $this->getPaymentInfoData();
+
+if (isset($paymentData['MBWAY_Reference'])){
+	echo  "<p>" . __('Please open your MB WAY App and authorize the transaction.') . "</p>";
+?>
+	
+	<table cellpadding="6" cellspacing="2" style="width: 350px; height: 55px; margin: 10px 0 2px 0;border: 1px solid #ddd">
+		<tr>
+			<td rowspan="2" style="width:110px;padding: 0px 5px 0px 5px;vertical-align: middle;"><img src="<?php echo $this->getViewFileUrl("Hipay_HipayMbwayGateway::images/mbway.jpg");?>" style="margin-bottom: 0px; margin-right: 0px;"/></td>
+			<td style="padding: 0px 5px 10px 5px;"><?php echo __('REFERENCE');?></td>
+			<td style="font-weight:bold;width:245px;padding: 0px 5px 0px 5px;"><?php echo $paymentData['MBWAY_Reference'];?></td>
+		</tr>
+		<tr>
+			<td style="padding: 0px 5px 10px 5px;"><?php echo __('AMOUNT');?></td>
+			<td style="font-weight:bold;padding: 0px 5px 0px 5px;"><?php echo $paymentData['MBWAY_AmountOut'];?> &euro;</td>
+		</tr>
+	</table>
+
+<?php
+}
+?>
+

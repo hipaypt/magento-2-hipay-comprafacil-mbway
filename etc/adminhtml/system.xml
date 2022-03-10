@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="payment">
+            <group id="hipay_mbway_gateway" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>HiPay MB WAY</label>
+                <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="sandbox" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Sandbox</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="title" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Title</label>
+                </field>
+                <group id="api_sandbox" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1" translate="label">
+					<label>Sandbox Account</label>
+					<field id="merchant_api_login" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+						<label>Merchant username</label>
+					</field>
+					<field id="merchant_api_password" translate="label" type="text" sortOrder="41" showInDefault="1" showInWebsite="1" showInStore="1">
+						<label>Merchant Password</label>
+					</field>
+                    <field id="merchant_api_category" translate="label" type="text" sortOrder="42" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Merchant Category ID</label>
+                    </field>                                       
+				</group>  
+				<group id="api_production" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1" translate="label">
+					<label>Production Account</label>				              
+					<field id="merchant_api_login" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+						<label>Merchant username</label>
+					</field>
+					<field id="merchant_api_password" translate="label" type="text" sortOrder="51" showInDefault="1" showInWebsite="1" showInStore="1">
+						<label>Merchant Password</label>
+					</field>                
+                    <field id="merchant_api_category" translate="label" type="text" sortOrder="52" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Merchant Category ID</label>
+                    </field>                      
+				</group>
+				
+
+                <field id="debug" translate="label" type="select" sortOrder="300" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Debug</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="payment_entity" translate="label" type="select" sortOrder="307" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Entity</label>
+                    <source_model>Hipay\HipayMbwayGateway\Model\Adminhtml\Source\PaymentEntity</source_model>
+                </field>
+                <field id="payment_action" translate="label" type="select" sortOrder="310" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Payment Action</label>
+                    <source_model>Hipay\HipayMbwayGateway\Model\Adminhtml\Source\PaymentAction</source_model>
+                </field>
+                <field id="allowspecific" translate="label" type="allowspecific" sortOrder="320" showInDefault="9"
+                       showInWebsite="1" showInStore="0">
+                    <label>Payment From Applicable Countries</label>
+                    <source_model>Magento\Payment\Model\Config\Source\Allspecificcountries</source_model>
+                </field>
+                <field id="specificcountry" translate="label" type="multiselect" sortOrder="330" showInDefault="1"
+                       showInWebsite="1" showInStore="0">
+                    <label>Payment From Specific Countries</label>
+                    <source_model>Magento\Directory\Model\Config\Source\Country</source_model>
+                </field>
+                <field id="sort_order" translate="label" type="text" sortOrder="340" showInDefault="1" showInWebsite="1"
+                       showInStore="0">
+                    <label>Sort Order</label>
+                    <frontend_class>validate-number</frontend_class>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
