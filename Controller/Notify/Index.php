@@ -1,7 +1,7 @@
 <?php
 namespace Hipay\HipayMbwayGateway\Controller\Notify;
 
-include(__DIR__ . '/../../lib/HipayMbway/autoload.php');
+include_once(__DIR__ . '/../../lib/HipayMbway/autoload.php');
 
 use Magento\Framework\App\Action\Action as AppAction;
 use Magento\Framework\App\Action\Context;
