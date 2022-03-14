@@ -6,6 +6,9 @@
     "license": [
         "Apache-2.0"
     ],
+    "support": {
+        "issues": "https://github.com/hipaypt/magento-2-hipay-comprafacil-mbway/issues"
+    },
     "autoload": {
         "files": [
             "registration.php"

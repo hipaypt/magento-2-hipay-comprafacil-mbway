@@ -96,10 +96,10 @@ class Index extends AppAction
 			case "c3":
 			case "c6":
 			case "vp1":
-			print "Waiting capture notification for transaction $transactionId." . PHP_EOL;
+				print "Waiting capture notification for transaction $transactionId." . PHP_EOL;
 			break;
 			case "ap1":
-			print "Refunded transaction $transactionId." . PHP_EOL;
+				print "Refunded transaction $transactionId." . PHP_EOL;
 			break;
 			case "c2":
 			case "c4":
@@ -108,21 +108,21 @@ class Index extends AppAction
 			case "c8":
 			case "c9":
 			case "vp2":
-			print "MB WAY payment cancelled transaction $transactionId." . PHP_EOL;
-			if ($this->checkTransactionStatus($transactionId,$transactionStatusCode)){
-				print "status check ok." . PHP_EOL;
-			} else {
-				print "status check nok." . PHP_EOL;
-				exit;
-			}	
-			if ($this->_order->getState() != \Magento\Sales\Model\Order::STATE_CANCELED && $this->_order->getState() != \Magento\Sales\Model\Order::STATE_PROCESSING){
-				$this->_order->setState(\Magento\Sales\Model\Order::STATE_CANCELED)->setStatus("canceled");
-				$comment = "Authorization failed, " . date('Y-m-d H:i:s');
-				$this->_order->addStatusHistoryComment($comment)->setIsCustomerNotified(true)->setEntityName('order');
-				$this->_order->save();	
-				echo "NO AUTHORIZATION!";
-			}		
-			break;
+				print "MB WAY payment cancelled transaction $transactionId." . PHP_EOL;
+				if ($this->checkTransactionStatus($transactionId,$transactionStatusCode)){
+					print "status check ok." . PHP_EOL;
+				} else {
+					print "status check nok." . PHP_EOL;
+					exit;
+				}	
+				if ($this->_order->getState() != \Magento\Sales\Model\Order::STATE_CANCELED && $this->_order->getState() != \Magento\Sales\Model\Order::STATE_PROCESSING){
+					$this->_order->setState(\Magento\Sales\Model\Order::STATE_CANCELED)->setStatus("canceled");
+					$comment = "Authorization failed, " . date('Y-m-d H:i:s');
+					$this->_order->addStatusHistoryComment($comment)->setIsCustomerNotified(true)->setEntityName('order');
+					$this->_order->save();	
+					echo "NO AUTHORIZATION!";
+				}		
+				break;
 		}
 	}
 
@@ -145,7 +145,7 @@ class Index extends AppAction
 		    $detailOperationId = $mbwayRequestDetailsResult->get_MBWayPaymentDetails()->get_OperationId();
 
 		    if ($detailStatusCode === $status) {
-			return true;
+				return true;
 		    }
 		}
 		return false;			
