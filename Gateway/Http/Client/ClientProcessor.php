@@ -5,7 +5,7 @@
  */
 namespace Hipay\HipayMbwayGateway\Gateway\Http\Client;
 
-include(__DIR__ . '/../../../lib/HipayMbway/autoload.php');
+include_once(__DIR__ . '/../../../lib/HipayMbway/autoload.php');
 
 use Magento\Payment\Gateway\Http\ClientInterface;
 use Magento\Payment\Gateway\Http\TransferInterface;
