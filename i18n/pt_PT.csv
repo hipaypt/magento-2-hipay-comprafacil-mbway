@@ -11,3 +11,7 @@
 "Alternative phone number for MB WAY Payment","Caso pretenda indique um número alternativo para pagamento"
 "PHONE NUMBER","TELEFONE"
 "You will receive an order confirmation with order details in your email. Please check your Mailbox or Spam.","Irá receber uma confirmação de encomenda com detalhes da mesma assim como uma ligação para acompanhar o progresso. Por favor verifique a caixa de correio ou de spam."
+"Invalid phone number","Número de telefone inválido."
+"Merchant account does not exist.","Configuraçao: Conta nao existente."
+"Something went wrong with your request. Please try again later.","Nao foi possivel completar o pagamento, por favor tente de novo."
+"It was not possible to complete your payment. Please try again.","Nao foi possivel completar o pagamento, por favor tente de novo."

@@ -10,3 +10,6 @@
 "This payment is valid for the next 5 minutes. Your order will be canceled if the payment expires.","This payment is valid for the next 5 minutes. Your order will be canceled when if payment expires.",module,Hipay_HipayMbwayGateway
 "Alternative phone number for MB WAY Payment","Alternative phone number for MB WAY Payment",module,Hipay_HipayMbwayGateway
 "PHONE NUMBER","PHONE NUMBER",module,Hipay_HipayMbwayGateway
+"Invalid phone number","Invalid phone number."
+"Merchant account does not exist.","Merchant account does not exist."
+"It was not possible to complete your payment. Please try again.","It was not possible to complete your payment. Please try again."

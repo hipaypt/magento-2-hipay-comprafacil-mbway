@@ -10,6 +10,7 @@ include_once(__DIR__ . '/../../../lib/HipayMbway/autoload.php');
 use Magento\Payment\Gateway\Http\ClientInterface;
 use Magento\Payment\Gateway\Http\TransferInterface;
 use Magento\Payment\Model\Method\Logger;
+use Magento\Framework\Exception\LocalizedException;
 
 use HipayMbway\MbwayClient;
 use HipayMbway\MbwayRequestTransaction;
@@ -110,17 +111,22 @@ class ClientProcessor implements ClientInterface
 			//vp1
 			$transactionId = $mbwayRequestTransactionResult->get_MBWayPaymentOperationResult()->get_OperationId();
 		} else {
-			if ($obj["DEBUG"])
-				$parameters["error"] 	= $mbwayRequestTransactionResult->get_MBWayPaymentOperationResult()->get_StatusCode();
-				$parameters["errorDescription"] 	= $mbwayRequestTransactionResult->get_ErrorDescription();
-				
-				$this->logger->debug(
-				[
-					'result'	 	=> $mbwayRequestTransactionResult->get_MBWayPaymentOperationResult()->get_StatusCode(),
-					'order_params' 	=> $parameters
-				]
-				);		
-			throw new \Exception("sdfasdf". $mbwayRequestTransactionResult->get_ErrorDescription());
+
+			$parameters["error"] 	= $mbwayRequestTransactionResult->get_MBWayPaymentOperationResult()->get_StatusCode();
+			$parameters["errorDescription"] 	= $mbwayRequestTransactionResult->get_ErrorDescription();
+
+			$this->logger->debug(
+			[
+				'result'	 	=> $mbwayRequestTransactionResult->get_MBWayPaymentOperationResult()->get_StatusCode(),
+				'order_params' 	=> $parameters
+			]
+			);		
+			if ($mbwayRequestTransactionResult->get_ErrorDescription() == "Invalid phone number" || $mbwayRequestTransactionResult->get_ErrorDescription() == "Merchant account does not exist.")
+				$errorMessage = __($mbwayRequestTransactionResult->get_ErrorDescription());
+			else
+				$errorMessage = __('It was not possible to complete your payment. Please try again.');	
+
+			throw new LocalizedException($errorMessage);
 
 		}  
 

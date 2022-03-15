@@ -48,7 +48,8 @@ class Index extends AppAction
     {
 
 		$entityBody = file_get_contents('php://input');
-
+		header('HTTP/1.1 402 Payment Required');
+		
 		$notification = new MbwayNotification($entityBody);
 		if ($notification->get_isJson() === false) {
 			die("Invalid notification received.");
@@ -73,34 +74,36 @@ class Index extends AppAction
 
 		switch ($transactionStatusCode) {
 			case "c1":
-			print "MB WAY payment confirmed for transaction $transactionId." . PHP_EOL;
+				print "MB WAY payment confirmed for transaction $transactionId." . PHP_EOL;
 
-			if ($this->checkTransactionStatus($transactionId,$transactionStatusCode)){
-				print "status check ok." . PHP_EOL;
-			} else {
-				print "status check nok." . PHP_EOL;
-				exit;
-			}	
-			echo " AND CAPTURE!";
-			if ($this->_order->getState() != \Magento\Sales\Model\Order::STATE_CANCELED && $this->_order->getState() != \Magento\Sales\Model\Order::STATE_PROCESSING){
-				$this->_order->setState(\Magento\Sales\Model\Order::STATE_PROCESSING)->setStatus("processing");
-				$comment = "Captured, " . date('Y-m-d H:i:s');
-				$this->_order->addStatusHistoryComment($comment)->setIsCustomerNotified(true)->setEntityName('order');
-				$this->_order->save();
+				if ($this->checkTransactionStatus($transactionId,$transactionStatusCode)){
+					print "status check ok." . PHP_EOL;
+				} else {
+					print "status check nok." . PHP_EOL;
+					exit;
+				}	
+				echo "CAPTURE!";
+				if ($this->_order->getState() != \Magento\Sales\Model\Order::STATE_CANCELED && $this->_order->getState() != \Magento\Sales\Model\Order::STATE_PROCESSING && $this->_order->getState() != \Magento\Sales\Model\Order::STATE_COMPLETE){
+					$this->_order->setState(\Magento\Sales\Model\Order::STATE_PROCESSING)->setStatus("processing");
+					$comment = "Captured, " . date('Y-m-d H:i:s');
+					$this->_order->addStatusHistoryComment($comment)->setIsCustomerNotified(true)->setEntityName('order');
+					$this->_order->save();
 					$this->orderSender->send($this->_order, $comment, true);
-				$this->_order->setState(\Magento\Sales\Model\Order::STATE_PROCESSING)->setStatus("processing")->save();
-			}
-
+					$this->_order->setState(\Magento\Sales\Model\Order::STATE_PROCESSING)->setStatus("processing")->save();
+				}
+				header('HTTP/1.1 200 OK');
 
 			break;
 			case "c3":
 			case "c6":
 			case "vp1":
-			print "Waiting capture notification for transaction $transactionId." . PHP_EOL;
-			break;
+				print "Waiting capture notification for transaction $transactionId." . PHP_EOL;
+				header('HTTP/1.1 200 OK');
+				break;
 			case "ap1":
-			print "Refunded transaction $transactionId." . PHP_EOL;
-			break;
+				print "Refunded transaction $transactionId." . PHP_EOL;
+				header('HTTP/1.1 200 OK');
+				break;
 			case "c2":
 			case "c4":
 			case "c5":
@@ -108,21 +111,22 @@ class Index extends AppAction
 			case "c8":
 			case "c9":
 			case "vp2":
-			print "MB WAY payment cancelled transaction $transactionId." . PHP_EOL;
-			if ($this->checkTransactionStatus($transactionId,$transactionStatusCode)){
-				print "status check ok." . PHP_EOL;
-			} else {
-				print "status check nok." . PHP_EOL;
-				exit;
-			}	
-			if ($this->_order->getState() != \Magento\Sales\Model\Order::STATE_CANCELED && $this->_order->getState() != \Magento\Sales\Model\Order::STATE_PROCESSING){
-				$this->_order->setState(\Magento\Sales\Model\Order::STATE_CANCELED)->setStatus("canceled");
-				$comment = "Authorization failed, " . date('Y-m-d H:i:s');
-				$this->_order->addStatusHistoryComment($comment)->setIsCustomerNotified(true)->setEntityName('order');
-				$this->_order->save();	
-				echo "NO AUTHORIZATION!";
-			}		
-			break;
+				print "MB WAY payment cancelled transaction $transactionId." . PHP_EOL;
+				if ($this->checkTransactionStatus($transactionId,$transactionStatusCode)){
+					print "status check ok." . PHP_EOL;
+				} else {
+					print "status check nok." . PHP_EOL;
+					exit;
+				}	
+				if ($this->_order->getState() != \Magento\Sales\Model\Order::STATE_CANCELED && $this->_order->getState() != \Magento\Sales\Model\Order::STATE_PROCESSING){
+					$this->_order->setState(\Magento\Sales\Model\Order::STATE_CANCELED)->setStatus("canceled");
+					$comment = "Authorization failed, " . date('Y-m-d H:i:s');
+					$this->_order->addStatusHistoryComment($comment)->setIsCustomerNotified(true)->setEntityName('order');
+					$this->_order->save();	
+					echo "NO AUTHORIZATION!";
+				}		
+				header('HTTP/1.1 200 OK');
+				break;
 		}
 	}
 
@@ -151,7 +155,6 @@ class Index extends AppAction
 		return false;			
 		
 	}
-	
 	
 }
 	

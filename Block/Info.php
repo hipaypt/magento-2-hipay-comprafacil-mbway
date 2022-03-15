@@ -18,7 +18,7 @@ class Info extends \Magento\Payment\Block\Info
 
 		$payment = $order->getPayment();	
 
-	        $details['MBWAY_Entity'] = $payment->getAdditionalInformation('MBWAY_Entity');
+        $details['MBWAY_Entity'] = $payment->getAdditionalInformation('MBWAY_Entity');
        	$details['MBWAY_Reference'] = $payment->getAdditionalInformation('MBWAY_Reference');
 		$details['MBWAY_AmountOut'] = $payment->getAdditionalInformation('MBWAY_AmountOut');
 		$details['MBWAY_CategoryId'] = $payment->getAdditionalInformation('MBWAY_CategoryId');
