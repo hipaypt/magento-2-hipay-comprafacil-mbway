@@ -25,28 +25,21 @@ class ClientProcessor implements ClientInterface
 	private $sandbox;
 	private $entity;
 	private $ws_url;
-	
-    /**
-     * @var array
-     */
-    private $results = [
+	private $results = [
         self::SUCCESS,
         self::FAILURE
     ];
 
-    /**
-     * @var Logger
-     */
     private $logger;
 	private $soapClientFactory;
-
+	private $urlBuilder;
+	
     /**
      * @param Logger $logger
      */
     public function __construct( Logger $logger, \Magento\Framework\Webapi\Soap\ClientFactory $soapClientFactory, \Magento\Store\Model\StoreManagerInterface $storeManager, \Magento\Framework\UrlInterface $urlBuilder ) {
         $this->logger 			= $logger;
         $this->soapClientFactory 	= $soapClientFactory;
-        $this->storeManager 		= $storeManager;
         $this->urlBuilder		= $urlBuilder;
     }
 
@@ -130,8 +123,6 @@ class ClientProcessor implements ClientInterface
 
 		}  
 
-
-
 		$platform = $this->getPlatform();
         	$response = [
                 'RESULT_CODE' 	=> $mbwayRequestTransactionResult->get_ErrorCode(),
@@ -175,7 +166,6 @@ class ClientProcessor implements ClientInterface
 		}
 
 	}
-
 
     /**
      * @return string
